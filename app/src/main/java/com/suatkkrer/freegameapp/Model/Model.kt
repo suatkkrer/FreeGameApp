@@ -1,11 +1,30 @@
 package com.suatkkrer.freegameapp.Model
 
+import com.google.gson.annotations.SerializedName
 
-    data class Game(val gameName: String?,
-                    val id: Int?,
-    val imgUrl: String?,
-    val description: String?,
-    val game_url: String?,
-    val genre: String?,
-    val publisher: String?,
-    val release_date: String?)
+
+data class Game(
+
+        @SerializedName("title")
+        val gameName: String?,
+
+        @SerializedName("id")
+        val id: Int?,
+
+        @SerializedName("thumbnail")
+        val imgUrl: String?,
+
+        @SerializedName("short_description")
+        val description: String?,
+
+        @SerializedName("game_url")
+        val game_url: String?,
+
+        @SerializedName("genre")
+        val genre: String?,
+
+        @SerializedName("publisher")
+        val publisher: String?,
+
+        @SerializedName("release_date")
+        val release_date: String?)

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.suatkkrer.freegameapp.Adapter.GameAdapter
 import com.suatkkrer.freegameapp.R
@@ -44,11 +45,18 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java)
         viewModel.refreshData()
 
-        gameList.layoutManager = LinearLayoutManager(context)
+        gameList.layoutManager = GridLayoutManager(context,2)
         gameList.adapter = gameAdapter
 
-        obserbeLiveData()
+        swipeRefreshLayout.setOnRefreshListener {
+            gameList.visibility = View.GONE
+            gameError.visibility = View.GONE
+            gameLoading.visibility = View.GONE
+            viewModel.refreshData()
+            swipeRefreshLayout.isRefreshing = false
+        }
 
+        obserbeLiveData()
 
 
     }

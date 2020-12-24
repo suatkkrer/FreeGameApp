@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.suatkkrer.freegameapp.Model.Game
 import com.suatkkrer.freegameapp.R
+import com.suatkkrer.freegameapp.Util.downloadFromUrl
+import com.suatkkrer.freegameapp.Util.placeholderProgressBar
 import com.suatkkrer.freegameapp.View.MainFragmentDirections
 import kotlinx.android.synthetic.main.item_game.view.*
 import java.util.ArrayList
@@ -30,6 +32,9 @@ class GameAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<GameAdap
             val action = MainFragmentDirections.actionMainFragmentToGameFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        holder.view.imageView.downloadFromUrl(gameList[position].imgUrl, placeholderProgressBar(holder.view.context))
+
     }
 
     override fun getItemCount(): Int {
