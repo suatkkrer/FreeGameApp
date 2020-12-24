@@ -53,7 +53,7 @@ class MainFragment : Fragment() {
 
     }
 
-    fun obserbeLiveData() {
+    private fun obserbeLiveData() {
         viewModel.games.observe(viewLifecycleOwner, Observer { games ->
 
             games?.let {

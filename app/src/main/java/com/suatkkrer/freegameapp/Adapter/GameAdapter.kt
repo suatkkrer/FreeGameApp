@@ -3,9 +3,11 @@ package com.suatkkrer.freegameapp.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.suatkkrer.freegameapp.Model.Game
 import com.suatkkrer.freegameapp.R
+import com.suatkkrer.freegameapp.View.MainFragmentDirections
 import kotlinx.android.synthetic.main.item_game.view.*
 import java.util.ArrayList
 
@@ -24,7 +26,10 @@ class GameAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<GameAdap
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         holder.view.name.text = gameList[position].gameName
         holder.view.genre.text = gameList[position].genre
-
+        holder.view.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToGameFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
