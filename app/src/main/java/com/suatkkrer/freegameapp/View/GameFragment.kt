@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.suatkkrer.freegameapp.GameFragmentArgs
+import com.suatkkrer.freegameapp.View.GameFragmentArgs
 import com.suatkkrer.freegameapp.R
 
 
