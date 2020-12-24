@@ -1,14 +1,17 @@
-package com.suatkkrer.freegameapp
+package com.suatkkrer.freegameapp.View
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import kotlinx.android.synthetic.main.fragment_main.*
+import com.suatkkrer.freegameapp.GameFragmentArgs
+import com.suatkkrer.freegameapp.R
 
-class MainFragment : Fragment() {
+
+class GameFragment : Fragment() {
+
+    private var gameUuid = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +24,15 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_game, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        fragmentButton.setOnClickListener {
-//            val action = MainFragmentDirections.actionMainFragmentToGameFragment()
-//            Navigation.findNavController(it).navigate(action)
-//        }
-        
-    }
+        arguments?.let {
+            gameUuid = GameFragmentArgs.fromBundle(it).gameUuid
+        }
 
+    }
 }
