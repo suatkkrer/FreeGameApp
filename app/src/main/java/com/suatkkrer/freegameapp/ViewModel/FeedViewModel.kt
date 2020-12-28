@@ -19,9 +19,7 @@ class FeedViewModel : ViewModel() {
     val gameLoading = MutableLiveData<Boolean>()
 
     fun refreshData(){
-
         getDataFromAPI()
-
     }
 
     private fun getDataFromAPI(){
