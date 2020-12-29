@@ -31,9 +31,11 @@ class FeedViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object  : DisposableSingleObserver<List<Game>>(){
                     override fun onSuccess(t: List<Game>) {
+
                         games.value = t
                         gameError.value = false
                         gameLoading.value = false
+
                     }
 
                     override fun onError(e: Throwable) {
