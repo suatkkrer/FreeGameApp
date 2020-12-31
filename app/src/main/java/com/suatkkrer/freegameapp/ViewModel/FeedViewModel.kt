@@ -32,9 +32,13 @@ class FeedViewModel : ViewModel() {
                 .subscribeWith(object  : DisposableSingleObserver<List<Game>>(){
                     override fun onSuccess(t: List<Game>) {
 
+
+
                         games.value = t
                         gameError.value = false
                         gameLoading.value = false
+
+
 
                     }
 
