@@ -20,8 +20,6 @@ class GameAPIService {
         .build()
         .create(GameAPI::class.java)
 
-
-
     fun getData() : Single<List<Game>> {
         return api.getGames()
     }
