@@ -1,4 +1,4 @@
-package com.suatkkrer.freegameapp.Service
+ package com.suatkkrer.freegameapp.Service
 
 import com.google.gson.Gson
 import com.suatkkrer.freegameapp.Model.Game
