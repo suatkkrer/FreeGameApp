@@ -1,6 +1,7 @@
 package com.suatkkrer.freegameapp.ViewModel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.suatkkrer.freegameapp.Model.Game
@@ -19,12 +20,30 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
     private val gameAPIService = GameAPIService()
     private val disposable = CompositeDisposable()
     private var customPreferences = CustomSharedPreferences(getApplication())
+    private var refreshTime = 30 * 60 * 1000 * 1000 * 1000L
 
     val games = MutableLiveData<List<Game>>()
     val gameError = MutableLiveData<Boolean>()
     val gameLoading = MutableLiveData<Boolean>()
 
     fun refreshData(){
+        val updateTime = customPreferences.getTime()
+        if(updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime){
+            getDataFromSQLite()
+        } else {
+            getDataFromAPI()
+        }
+
+    }
+
+    private fun getDataFromSQLite(){
+        launch {
+            val games = GameDatabase(getApplication()).gameDao().getAllGames()
+            showGames(games)
+        }
+    }
+
+    fun refreshFromAPI() {
         getDataFromAPI()
     }
 

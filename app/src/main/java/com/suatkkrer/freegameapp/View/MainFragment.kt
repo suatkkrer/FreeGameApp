@@ -52,7 +52,7 @@ class MainFragment : Fragment() {
             gameList.visibility = View.GONE
             gameError.visibility = View.GONE
             gameLoading.visibility = View.GONE
-            viewModel.refreshData()
+            viewModel.refreshFromAPI()
             swipeRefreshLayout.isRefreshing = false
         }
 
