@@ -1,14 +1,21 @@
 package com.suatkkrer.freegameapp.View
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Paint
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.suatkkrer.freegameapp.View.GameFragmentArgs
 import com.suatkkrer.freegameapp.R
+import com.suatkkrer.freegameapp.Util.downloadFromUrl
+import com.suatkkrer.freegameapp.Util.placeholderProgressBar
 import com.suatkkrer.freegameapp.ViewModel.GameViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 
@@ -36,27 +43,44 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
-        viewModel.getDataFromRoom()
-
         arguments?.let {
             gameUuid = GameFragmentArgs.fromBundle(it).gameUuid
         }
+
+        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        viewModel.getDataFromRoom(gameUuid)
         observeLiveData()
-    }
 
-    private fun observeLiveData(){
-        viewModel.gameLiveData.observe(viewLifecycleOwner, Observer { game ->
+        viewModel.gameLiveData.observe(viewLifecycleOwner, Observer {game ->
             game?.let {
-                gameName.text = game.gameName
-                genreText.text = game.genre
-                release_date.text = game.release_date
-                description.text = game.description
-                game_url.text = game.game_url
-                publisher.text = game.publisher
-
-
+                game_url.setOnClickListener {
+                    val browse = Intent(Intent.ACTION_VIEW, Uri.parse(game.game_url))
+                    startActivity(browse)
+                }
             }
         })
+
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun observeLiveData() {
+        viewModel.gameLiveData.observe(viewLifecycleOwner, Observer { game ->
+            game?.let {
+                gameName.text =  "${game.gameName}"
+                genreText.text = "${game.genre}"
+                release_date.text = "${game.release_date}"
+                description.text = "${game.description}"
+                game_url.underline()
+                game_url.text = "${game.game_url}"
+                publisher.text = "${game.publisher}"
+                context?.let {
+                    gameImage.downloadFromUrl(game.thumbnail, placeholderProgressBar(it))
+                }
+            }
+        })
+    }
+    fun TextView.underline(){
+        paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 }

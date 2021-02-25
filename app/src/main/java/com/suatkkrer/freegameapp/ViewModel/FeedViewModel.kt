@@ -37,6 +37,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun getDataFromSQLite(){
+        gameLoading.value = true
         launch {
             val games = GameDatabase(getApplication()).gameDao().getAllGames()
             showGames(games)
