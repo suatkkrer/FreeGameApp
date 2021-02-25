@@ -9,35 +9,35 @@ import com.google.gson.annotations.SerializedName
 data class Game(
         @ColumnInfo(name = "title")
         @SerializedName("title")
-        val gameName: String?,
+        var gameName: String?,
 
-        @ColumnInfo(name = "id")
-        @SerializedName("id")
-        val id: Int?,
+//        @ColumnInfo(name = "id")
+//        @SerializedName("id")
+//        var id: Int?,
 
         @ColumnInfo(name = "thumbnail")
         @SerializedName("thumbnail")
-        val imgUrl: String?,
+        var thumbnail: String?,
 
         @ColumnInfo(name = "short_description")
         @SerializedName("short_description")
-        val description: String?,
+        var description: String?,
 
         @ColumnInfo(name = "game_url")
         @SerializedName("game_url")
-        val game_url: String?,
+        var game_url: String?,
 
         @ColumnInfo(name = "genre")
         @SerializedName("genre")
-        val genre: String?,
+        var genre: String?,
 
         @ColumnInfo(name = "publisher")
         @SerializedName("publisher")
-        val publisher: String?,
+        var publisher: String?,
 
         @ColumnInfo(name = "release_date")
         @SerializedName("release_date")
-        val release_date: String?) {
+        var release_date: String?) {
 
         @PrimaryKey(autoGenerate = true)
         var uuid: Int = 0

@@ -9,7 +9,7 @@ class GameViewModel : ViewModel() {
     val gameLiveData = MutableLiveData<Game>()
 
     fun getDataFromRoom() {
-        val game = Game("oyun",1,"www.ccc.com","dsafasdfa","sdafasfdasf","agasdga","dasfasf","safsadfasf")
+        val game = Game("oyun","www.ccc.com","dsafasdfa","sdafasfdasf","agasdga","dasfasf","safsadfasf")
         gameLiveData.value = game
     }
 

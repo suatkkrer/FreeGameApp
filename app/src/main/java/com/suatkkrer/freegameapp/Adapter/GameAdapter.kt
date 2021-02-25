@@ -33,7 +33,7 @@ class GameAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<GameAdap
             Navigation.findNavController(it).navigate(action)
         }
 
-        holder.view.imageView.downloadFromUrl(gameList[position].imgUrl, placeholderProgressBar(holder.view.context))
+        holder.view.imageView.downloadFromUrl(gameList[position].thumbnail, placeholderProgressBar(holder.view.context))
 
     }
 
