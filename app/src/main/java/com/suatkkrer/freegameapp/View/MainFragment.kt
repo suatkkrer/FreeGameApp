@@ -36,11 +36,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        fragmentButton.setOnClickListener {
-//            val action = MainFragmentDirections.actionMainFragmentToGameFragment()
-//            Navigation.findNavController(it).navigate(action)
-//        }
-
 
         viewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java)
         viewModel.refreshData()
