@@ -6,7 +6,8 @@ import retrofit2.http.GET
 
 interface GameAPI {
 
-    //https://www.freetogame.com/api/games
+    //https://www.freetogame.com
+    // /api/games
 
     @GET("api/games")
     fun getGames():Single<List<Game>>
